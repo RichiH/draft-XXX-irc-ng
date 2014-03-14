@@ -1,0 +1,26 @@
+Scope
+=====
+
+Explore viability of using partially/fully meshed inter-server links for IRC networks.
+
+Existing work
+=============
+
+* http://wiki.inspircd.org/IRC_Meshing
+* http://www.db.net/~db/LazyLinks.txt
+* http://etherpad.tools.ietf.org:9000/p/irc
+
+Problems
+========
+
+* Maintaining consistent state
+* All messages by one source need to arrive in the same order on all servers and clients
+* Overall state must sync eventually
+
+Approach
+========
+
+* Servers are partially meshed, ideally with Shortest-Path-First
+* All sources are assigned a UUID and a counter. That way, message order can be enforced
+* Batch ACKing of all UUIDs and counters may be needed
+	* Servers which are out of sync too often may need to receive a kill signal and then delink
